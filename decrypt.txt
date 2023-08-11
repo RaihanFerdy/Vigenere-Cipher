@@ -1,0 +1,3 @@
+Message: omstv
+Key: hihih
+Result: hello
