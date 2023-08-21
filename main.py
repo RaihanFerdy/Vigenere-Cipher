@@ -12,7 +12,7 @@ def encrypt(message, key):
                 key = key[i:len(message)]
             result_index = (string.ascii_uppercase.index(char) + string.ascii_uppercase.index(key[i])) % 26
             result += string.ascii_uppercase[result_index]
-        elif char.lower():
+        elif char.islower():
             key = key.lower()
             if len(key) < len(message):
                 key += key[i % len(key)]
@@ -50,7 +50,7 @@ def decrypt(message, key):
                 key = key[i:len(message)]
             result_index = (string.ascii_uppercase.index(char) - string.ascii_uppercase.index(key[i])) % 26
             result += string.ascii_uppercase[result_index]
-        elif char.lower():
+        elif char.islower():
             key = key.lower()
             if len(key) < len(message):
                 key += key[i % len(key)]
@@ -79,6 +79,10 @@ message = input("Input message: ")
 key = input("Key: ")
 method = input("Select method: [e/d]: ").lower()
 if method == "e":
+    key = key.replace(" ", "") if " " in key else key
     encrypt(message, key)
 elif method == "d":
+    key = key.replace(" ", "") if " " in key else key
     decrypt(message, key)
+else:
+    print("Unknown method")
